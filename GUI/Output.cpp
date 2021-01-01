@@ -5,7 +5,7 @@ Output::Output()
 	//Initialize user interface parameters
 
 	UI.AppMode = DESIGN;	//Design Mode is the startup mode
-	UI.ActiveBar = DesignBar;
+	UI.ActiveBar = DesignBar;  //Design Bar is the startup bar
 
 	//Initilaize interface colors
 	UI.DrawColor = BLACK;
@@ -62,13 +62,6 @@ void Output::PrintMsg(string msg) const
 	pWind->SetFont(20, BOLD | ITALICIZED, BY_NAME, "Arial");
 	pWind->SetPen(UI.MsgColor);
 	pWind->DrawString(MsgX, UI.height - MsgY, msg);
-}
-
-void Output::ClearGate(int x,int y) //Youssef was here
-{
-	pWind->SetPen(WHITE, 1);
-	pWind->SetBrush(WHITE);
-	pWind->DrawRectangle(x, y, x + UI.AND2_Width, y + UI.AND2_Height);
 }
 
 void Output::PrintLabelMsg(string msg) const

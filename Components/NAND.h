@@ -1,20 +1,12 @@
-#ifndef _NOT_H
-#define _NOT_H
-
-/*
-  Class ORD2
-  -----------
-  represent the 1-input NOT gate
-*/
-
+#pragma once
 #include "Gate.h"
 
-class NOT:public Gate
+class NAND :public Gate
 {
 public:
-	NOT(const GraphicsInfo &r_GfxInfo, int r_FanOut);
-	virtual void Operate();	//Calculates the output of the NOT gate
-	virtual void Draw(Output* pOut);	//Draws 1-input gate
+	NAND(const GraphicsInfo& r_GfxInfo, int r_FanOut);
+	virtual void Operate();	//Calculates the output of the NAND gate
+	virtual void Draw(Output* pOut);	//Draws NAND gate
 
 	virtual int GetOutPinStatus();	//returns status of outputpin if LED, return -1
 	virtual int GetInputPinStatus(int n);	//returns status of Inputpin # n if SWITCH, return -1
@@ -23,5 +15,3 @@ public:
 
 
 };
-
-#endif

@@ -2,7 +2,6 @@
 
 NOR2::NOR2(const GraphicsInfo &r_GfxInfo, int r_FanOut):Gate(2, r_FanOut)
 {
-	Selected = false;
 	m_GfxInfo.x1 = r_GfxInfo.x1;
 	m_GfxInfo.y1 = r_GfxInfo.y1;
 	m_GfxInfo.x2 = r_GfxInfo.x2;
@@ -34,10 +33,10 @@ void NOR2::Operate()
 
 // Function Draw
 // Draws 2-input OR gate
-void NOR2::Draw(Output* pOut,bool Selected)
+void NOR2::Draw(Output* pOut)
 {
 	//Call output class and pass gate drawing info to it.
-	pOut->DrawNOR2(m_GfxInfo,Selected);
+	pOut->DrawNOR2(m_GfxInfo);
 }
 
 //returns status of outputpin

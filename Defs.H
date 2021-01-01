@@ -11,7 +11,6 @@ enum ActionType
 	ADD_INV,			//Add 1-input Inverter gate
 	ADD_AND_GATE_2,		//Add 2-input AND gate
 	ADD_OR_GATE_2,		//Add 2-input OR gate
-	DEL,
 	ADD_NAND_GATE_2,	//Add 2-input NAND gate
 	ADD_NOR_GATE_2,		//Add 2-input NOR gate
 	ADD_XOR_GATE_2,		//Add 2-input XOR gate
@@ -35,7 +34,7 @@ enum ActionType
 
 	SELECT,		//Select a Component, a Connection
 	Multiple_SELECT, //select multiple components at once
-	//DEL,		//Delete a Component, a Connection
+	DEL,		//Delete a Component, a Connection
 	MOVE,		//Move a Component, a Connection
 
 	CLEAR,		//clear drawing area
@@ -67,17 +66,19 @@ enum STATUS
 	HIGH
 };
 
+enum BAR
+{
+	GateBar,
+	DesignBar
+	//GateBar
+};
+
 enum  MODE	//Modes of operation
 {
 	DESIGN,
 	SIMULATION
 };
 
-enum BAR
-{
-	GateBar,
-	DesignBar,
-};
 
 enum DsgnMenuItem //The items of the design menu (you should add more items)
 {

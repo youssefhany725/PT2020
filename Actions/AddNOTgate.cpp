@@ -1,3 +1,4 @@
+/*
 #include "AddNOTgate.h"
 #include "..\ApplicationManager.h"
 
@@ -50,3 +51,4 @@ void AddNOTgate::Undo()
 
 void AddNOTgate::Redo()
 {}
+*/

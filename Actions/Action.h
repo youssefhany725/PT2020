@@ -24,6 +24,9 @@ public:
 	//To redo this action (code depends on action type)
 	virtual void Redo()=0;
 
+	//To add a label for component
+	virtual void Label()=0;
+
 };
 
 #endif

@@ -85,7 +85,7 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 	if (UI.AppMode == DESIGN)	//application is in design mode
 	{
 		//[1] If user clicks on the Toolbar
-		if (y >= 0 && UI.ActiveBar==GateBar && y < UI.ToolBarHeight)
+		if (y >= 0 && UI.ActiveBar == GateBar && y < UI.ToolBarHeight)
 		{
 			int ClickedItemOrder = (x / UI.ToolItemWidth);
 			switch (ClickedItemOrder)
@@ -104,10 +104,12 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 			case ITM_LED:	 return ADD_LED;
 			case ITM_SWITCH: return ADD_Switch;
 			case ITM_Exit:   return EXIT;
-			case ITM_BACK: 	 return Go_Back;
+			case ITM_BACK:/* UI.ActiveBar = DesignBar;	 */return Go_Back;
+
+			default:		 return DSN_TOOL;	//A click on empty place in desgin toolbar
 			}
 		}
-		if (y >= 0 && UI.ActiveBar==DesignBar && y < UI.ToolBarHeight)
+		if (y >= 0 && y < UI.ToolBarHeight && UI.ActiveBar == DesignBar)
 		{
 			//Check whick Menu item was clicked
 			//==> This assumes that menu items are lined up horizontally <==
@@ -117,7 +119,7 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 
 			switch (ClickedItemOrder)
 			{
-			case ITM_ADD:		return ADD_GATE;
+			case ITM_ADD:/* UI.ActiveBar == GateBar;	*/return ADD_GATE;
 			case ITM_EDIT:		return EDIT_Label;
 			case ITM_SAVE:		return SAVE;
 			case ITM_LOAD:		return LOAD;

@@ -29,6 +29,7 @@ void XOR2::Draw(Output* pOut)
 {
 	//Call output class and pass gate drawing info to it.
 	pOut->DrawXOR2(m_GfxInfo);
+	pOut->PrintLabel(m_GfxInfo.x1, m_GfxInfo.y1 - 17, NameTag);
 }
 
 //returns status of outputpin
@@ -48,4 +49,9 @@ int XOR2::GetInputPinStatus(int n)
 void XOR2::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n - 1].setStatus(s);
+}
+
+void XOR2::SetLabel(string Label)
+{
+	NameTag = Label;
 }

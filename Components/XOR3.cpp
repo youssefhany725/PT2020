@@ -29,6 +29,7 @@ void XOR3::Draw(Output* pOut)
 {
 	//Call output class and pass gate drawing info to it.
 	pOut->DrawXOR3(m_GfxInfo);
+	pOut->PrintLabel(m_GfxInfo.x1, m_GfxInfo.y1 - 17, NameTag);
 }
 
 //returns status of outputpin
@@ -49,3 +50,13 @@ void XOR3::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n - 1].setStatus(s);
 }
+
+void XOR3::SetLabel(string Label)
+{
+	NameTag = Label;
+}
+
+//void XOR3::SetID()
+//{
+//	//ID++;
+//}

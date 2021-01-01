@@ -1,10 +1,10 @@
-#ifndef _ADD_AND_GATE_H
-#define _ADD_AND_GATE_H
+#ifndef _ADD_LED_H
+#define _ADD_LED_H
 
 #include "action.h"
-#include "..\Components\AND2.h"
+#include "..\Components\LED.h"
 
-class AddANDgate2 :	public Action
+class AddLED :	public Action
 {
 private:
 	//Parameters for rectangular area to be occupied by the gate
@@ -13,8 +13,8 @@ private:
 protected:
 	string NameTag;
 public:
-	AddANDgate2(ApplicationManager *pApp);
-	virtual ~AddANDgate2(void);
+	AddLED(ApplicationManager *pApp);
+	virtual ~AddLED(void);
 
 	//Reads parameters required for action to execute
 	virtual void ReadActionParameters();

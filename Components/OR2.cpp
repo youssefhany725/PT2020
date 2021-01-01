@@ -2,7 +2,6 @@
 
 OR2::OR2(const GraphicsInfo &r_GfxInfo, int r_FanOut):Gate(2, r_FanOut)
 {
-	Selected = false;
 	m_GfxInfo.x1 = r_GfxInfo.x1;
 	m_GfxInfo.y1 = r_GfxInfo.y1;
 	m_GfxInfo.x2 = r_GfxInfo.x2;
@@ -34,10 +33,10 @@ void OR2::Operate()
 
 // Function Draw
 // Draws 2-input OR gate
-void OR2::Draw(Output* pOut, bool Selected)
+void OR2::Draw(Output* pOut)
 {
 	//Call output class and pass gate drawing info to it.
-	pOut->DrawOR2(m_GfxInfo,Selected);
+	pOut->DrawOR2(m_GfxInfo);
 }
 
 //returns status of outputpin

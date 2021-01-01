@@ -1,6 +1,7 @@
-#include "AND2.h"
+#include "NAND.h"
 
-AND2::AND2(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
+
+NAND::NAND(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
 {
 	m_GfxInfo.x1 = r_GfxInfo.x1;
 	m_GfxInfo.y1 = r_GfxInfo.y1;
@@ -9,7 +10,7 @@ AND2::AND2(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
 }
 
 
-void AND2::Operate()
+void NAND::Operate()
 {
 	//caclulate the output status as the ANDing of the two input pins
 	int OP = 1;
@@ -18,44 +19,38 @@ void AND2::Operate()
 	{
 		OP = OP * m_InputPins[i].getStatus();
 	}
-	m_OutputPin = OP;
+	if (OP == 0)
+	{
+		m_OutputPin = 1;
+	}
+	else m_OutputPin = 0;
+	
 }
 
 
 // Function Draw
-// Draws 2-input AND gate
-void AND2::Draw(Output* pOut)
+// Draws 2-input NAND gate
+void NAND::Draw(Output* pOut)
 {
 	//Call output class and pass gate drawing info to it.
-	pOut->DrawAND2(m_GfxInfo);
-	pOut->PrintLabel(m_GfxInfo.x1, m_GfxInfo.y1 - 17, NameTag);
+	pOut->DrawNAND2(m_GfxInfo);
 }
 
 //returns status of outputpin
-int AND2::GetOutPinStatus()
+int NAND::GetOutPinStatus()
 {
 	return m_OutputPin.getStatus();
 }
 
 
 //returns status of Inputpin #n
-int AND2::GetInputPinStatus(int n)
+int NAND::GetInputPinStatus(int n)
 {
 	return m_InputPins[n - 1].getStatus();	//n starts from 1 but array index starts from 0.
 }
 
 //Set status of an input pin ot HIGH or LOW
-void AND2::setInputPinStatus(int n, STATUS s)
+void NAND::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n - 1].setStatus(s);
 }
-
-void AND2::SetLabel(string Label)
-{
-	NameTag = Label;
-}
-
-//void AND2::SetID()
-//{
-//	//ID++;
-//}

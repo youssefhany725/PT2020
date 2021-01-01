@@ -1,3 +1,4 @@
+/*
 #include "AddNORgate2.h"
 #include "..\ApplicationManager.h"
 
@@ -50,3 +51,4 @@ void AddNORgate2::Undo()
 
 void AddNORgate2::Redo()
 {}
+*/

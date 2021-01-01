@@ -1,10 +1,11 @@
-#ifndef _ADD_AND_GATE_H
-#define _ADD_AND_GATE_H
+/*
+#ifndef _ADD_XNOR_GATE_H
+#define _ADD_XNOR_GATE_H
 
 #include "action.h"
-#include "..\Components\AND2.h"
+#include "..\Components\XNOR2.h"
 
-class AddANDgate2 :	public Action
+class AddXNORgate2 : public Action
 {
 private:
 	//Parameters for rectangular area to be occupied by the gate
@@ -13,8 +14,8 @@ private:
 protected:
 	string NameTag;
 public:
-	AddANDgate2(ApplicationManager *pApp);
-	virtual ~AddANDgate2(void);
+	AddXNORgate2(ApplicationManager* pApp);
+	virtual ~AddXNORgate2(void);
 
 	//Reads parameters required for action to execute
 	virtual void ReadActionParameters();
@@ -25,6 +26,8 @@ public:
 	virtual void Redo();
 	virtual void Label();
 
+
 };
 
 #endif
+*/

@@ -1,20 +1,20 @@
-#ifndef _ADD_AND_GATE_H
-#define _ADD_AND_GATE_H
+//E7TMAL KBEER AMSA7 EL CLASS. aw msh hms7o, bs h5leeh by3adel 3la gate mwgooda asln
+
+#ifndef _ADD_Label_H
+#define _ADD_Label_H
 
 #include "action.h"
-#include "..\Components\AND2.h"
+//#include "..\Components\XOR3.h"  // msh m7tag a-inlcude component
 
-class AddANDgate2 :	public Action
+class AddLabel : public Action
 {
 private:
 	//Parameters for rectangular area to be occupied by the gate
 	int Cx, Cy;	//Center point of the gate
 	int x1, y1, x2, y2;	//Two corners of the rectangluar area
-protected:
-	string NameTag;
 public:
-	AddANDgate2(ApplicationManager *pApp);
-	virtual ~AddANDgate2(void);
+	AddLabel(ApplicationManager* pApp);
+	virtual ~AddLabel(void);
 
 	//Reads parameters required for action to execute
 	virtual void ReadActionParameters();
