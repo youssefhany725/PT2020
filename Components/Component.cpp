@@ -2,40 +2,16 @@
 
 Component::Component(const GraphicsInfo &r_GfxInfo)
 {
-	m_GfxInfo = r_GfxInfo;
+	m_GfxInfo = r_GfxInfo;	
 }
 
-int Component::GetCoordsx1() //youssef was here
-{
-	return m_GfxInfo.x1; 
-}
+Component::Component()
+{}
 
-int Component::GetCoordsx2() //youssef was here
-{
-	return m_GfxInfo.x2;
-}
+Component::~Component()
+{}
 
-int Component::GetCoordsy1() //youssef was here
-{
-	return m_GfxInfo.y1;
-}
-
-int Component::GetCoordsy2() //youssef was here
-{
-	return m_GfxInfo.y2;
-}
-
-void Component::setSelected(bool s)
-{
-	Selected = s;
-}
-
-bool Component::getSelected()
-{
-	return Selected;
-}
-
-bool Component::Inarea(int x, int y)
+bool Component::Inarea(int x,int y)
 {
 
 	if (x >= m_GfxInfo.x1 && x <= m_GfxInfo.x2 && y >= m_GfxInfo.y1 && y < m_GfxInfo.y2)
@@ -45,10 +21,10 @@ bool Component::Inarea(int x, int y)
 	else return false;
 
 }
-
-Component::Component()
-{}
-
-Component::~Component()
-{}
-
+void Component::getGInfo(int& x1,int& y1, int& x2, int& y2)
+{
+	x1 = m_GfxInfo.x1;
+	y1 = m_GfxInfo.y1;
+	x2 = m_GfxInfo.x2;
+	y2 = m_GfxInfo.y2;
+}

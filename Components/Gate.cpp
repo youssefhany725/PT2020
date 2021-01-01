@@ -14,3 +14,12 @@ Gate::Gate(int r_Inputs, int r_FanOut):m_OutputPin(r_FanOut)
 	for(int i=0; i<m_Inputs; i++)
 		m_InputPins[i].setComponent(this);
 }
+int Gate::getNoIpins()
+{
+	return m_Inputs;
+}
+
+OutputPin& Gate::getOP()
+{
+	return m_OutputPin;
+}

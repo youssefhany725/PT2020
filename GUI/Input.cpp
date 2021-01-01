@@ -84,7 +84,7 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 
 	if (UI.AppMode == DESIGN)	//application is in design mode
 	{
-		//[1] If user clicks on the Toolbar
+			//[1] If user clicks on the Toolbar
 		if (y >= 0 && UI.ActiveBar==GateBar && y < UI.ToolBarHeight)
 		{
 			int ClickedItemOrder = (x / UI.ToolItemWidth);

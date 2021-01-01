@@ -1,12 +1,9 @@
 #include "ApplicationManager.h"
 #include "Actions\AddANDgate2.h"
-#include "Actions\AddORgate2.h"
-#include "Actions\Delete.h"
-#include "Actions\AddNOTgate.h"
-#include "Actions\AddNORgate2.h"
-#include "Actions\AddNORgate3.h"
-#include "Actions\AddSwitch.h"
-#include "Actions\Select.h"
+#include "Actions\AddANDgate3.h"
+#include "Actions\AddNANDgate.h"
+#include "Actions\AddBUFFERgate.h"
+#include "Actions\AddConnection.h"
 
 
 ApplicationManager::ApplicationManager()
@@ -21,7 +18,6 @@ ApplicationManager::ApplicationManager()
 	InputInterface = OutputInterface->CreateInput();
 }
 ////////////////////////////////////////////////////////////////////
-
 void ApplicationManager::AddComponent(Component* pComp)
 {
 	CompList[CompCount++] = pComp;		
@@ -42,36 +38,35 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 		case Go_Back:
 			UI.ActiveBar = DesignBar;
+			OutputInterface->PrintMsg("Action: create Design toolbar, Click anywhere");
+			OutputInterface->ClearDesignToolBar();
 			OutputInterface->CreateDesignToolBar();
 			break;
 		case ADD_GATE:
 			UI.ActiveBar = GateBar;
+			OutputInterface->PrintMsg("Action: create Gate toolbar, Click anywhere");
+			OutputInterface->ClearDesignToolBar();
 			OutputInterface->CreateGateToolBar();
 			break;
 		case ADD_AND_GATE_2:
 			pAct= new AddANDgate2(this);
 			break;
-		case ADD_OR_GATE_2:
-			pAct = new AddORgate2(this);
+		case ADD_AND_GATE_3:
+			pAct = new AddANDgate3(this);
 			break;
-		case ADD_NOR_GATE_2:
-			pAct = new AddNORgate2(this);
+		case ADD_NAND_GATE_2:
+			pAct = new AddNANDgate(this);
 			break;
-		case ADD_NOR_GATE_3:
-			pAct = new AddNORgate3(this);
+		case ADD_Buff:
+			pAct = new AddBUFFERgate(this);
 			break;
+
 		case ADD_CONNECTION:
 			//TODO: Create AddConection Action here
+			pAct = new AddConnection(this);
 			break;
-		case ADD_INV:
-			pAct = new AddNOTgate(this);
-			break;
-		case ADD_Switch:
-			pAct = new AddSwitch(this);
-			break;
-		case SELECT:
-			pAct = new Select(this);
-			break;
+	
+
 		case EXIT:
 			///TODO: create ExitAction here
 			break;
@@ -85,25 +80,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 }
 ////////////////////////////////////////////////////////////////////
 
-
-Component* ApplicationManager::IsComponent(int x, int y)
-{
-	for (int i = 0; i < CompCount; i++)
-	{
-		if (CompList[i]->Inarea(x, y))
-		{
-			return  CompList[i];
-		}
-	}
-	return NULL;
-}
-
-
 void ApplicationManager::UpdateInterface()
 {
-	OutputInterface->ClearDrawingArea();
-	for(int i=0; i<CompCount; i++)
-		CompList[i]->Draw(OutputInterface,CompList[i]->getSelected());
+		for(int i=0; i<CompCount; i++)
+			CompList[i]->Draw(OutputInterface);
 
 }
 
@@ -117,6 +97,18 @@ Input* ApplicationManager::GetInput()
 Output* ApplicationManager::GetOutput()
 {
 	return OutputInterface;
+}
+////////////////////////////////////////////////////////////////////
+Component* ApplicationManager::IsComponent(int x, int y)
+{
+	for (int i = 0; i < CompCount; i++)
+	{
+		if (CompList[i]->Inarea(x, y))
+		{
+			return  CompList[i];
+		}
+	}
+	return NULL;
 }
 
 ////////////////////////////////////////////////////////////////////

@@ -11,24 +11,21 @@ private:
 	string m_Label;
 protected:
 	GraphicsInfo m_GfxInfo;	//The parameters required to draw a component
-	bool Selected;
 public:
 	Component(const GraphicsInfo &r_GfxInfo);
 	virtual void Operate() = 0;	//Calculates the output according to the inputs
-	virtual void Draw(Output* pOut,bool) = 0;	//for each component to Draw itself
+	virtual void Draw(Output* pOut) = 0;	//for each component to Draw itself
 	
-	virtual int GetCoordsx1();//youssef was here
-	virtual int GetCoordsx2();//youssef was here
-	virtual int GetCoordsy1();//youssef was here
-	virtual int GetCoordsy2();//youssef was here
-	virtual void setSelected(bool);
-	virtual bool getSelected();
+	
 	virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
 	virtual int GetInputPinStatus(int n)=0;	//returns status of Inputpin # n if SWITCH, return -1
 
 	virtual void setInputPinStatus(int n, STATUS s)=0;	//set status of Inputpin # n, to be used by connection class.
-	bool Inarea(int, int);
 	
+	
+	virtual bool Inarea(int, int) ; // ask if the gate is clicked
+	
+	virtual void getGInfo(int&,int& ,int& ,int& ); // Getter for m_GfxInfo
 	Component();	
 	
 	//Destructor must be virtual
