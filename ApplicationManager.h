@@ -21,7 +21,7 @@ private:
 	Input* InputInterface; //pointer to the Input Clase Interface
 
 
-
+public:
 
 
 public:	
@@ -34,10 +34,6 @@ public:
 	void ExecuteAction(ActionType);
 	
 	void UpdateInterface();	//Redraws all the drawing window
-	
-
-	Component* IsComponent(int, int);
-	
 
 	//Gets a pointer to Input / Output Object
 	Output* GetOutput();
@@ -45,7 +41,9 @@ public:
 
 	//Adds a new component to the list of components
 	void AddComponent(Component* pComp);
-
+	//////////////////////////////////
+	Component* IsComponent(int x, int y);
+	////////////////////////////
 	//destructor
 	~ApplicationManager();
 };

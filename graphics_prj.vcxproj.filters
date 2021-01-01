@@ -149,44 +149,30 @@
     <ClCompile Include="Components\XNOR2.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\AddNORgate2.cpp">
+    <ClCompile Include="Actions\AddANDgate3.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\AddNORgate3.cpp">
+    <ClCompile Include="Actions\AddNANDgate.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\AddNOTgate.cpp">
+    <ClCompile Include="Actions\AddBUFFERgate.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\AddORgate2.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\NOR2.cpp">
+    <ClCompile Include="Components\AND3.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\NOR3.cpp">
+    <ClCompile Include="Components\BUFF.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\NOT.cpp">
+    <ClCompile Include="Components\NAND.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\OR2.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\AddSwitch.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\SWITCH.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Delete.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\Select.cpp">
+    <ClCompile Include="Actions\AddConnection.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Defs.H" />
     <ClInclude Include="Actions\Action.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -295,43 +281,25 @@
     <ClInclude Include="Components\XOR3.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\AddNORgate2.h">
+    <ClInclude Include="Actions\AddANDgate3.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\AddNORgate3.h">
+    <ClInclude Include="Actions\AddNANDgate.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\AddNOTgate.h">
+    <ClInclude Include="Actions\AddBUFFERgate.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\AddORgate2.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\NOR2.h">
+    <ClInclude Include="Components\AND3.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\NOR3.h">
+    <ClInclude Include="Components\BUFF.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\NOT.h">
+    <ClInclude Include="Components\NAND.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\OR2.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\AddSwitch.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\SWITCH.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Defs.H">
-      <Filter>Application Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Delete.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\Select.h">
+    <ClInclude Include="Actions\AddConnection.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
