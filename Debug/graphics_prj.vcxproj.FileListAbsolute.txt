@@ -1,0 +1,2 @@
+D:\Project Code Framework\Project Code Framework\Debug\graphics_prj.exe
+D:\Project Code Framework\Project Code Framework\Debug\graphics_prj.pdb
