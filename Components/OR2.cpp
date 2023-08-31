@@ -2,6 +2,7 @@
 
 OR2::OR2(const GraphicsInfo &r_GfxInfo, int r_FanOut):Gate(2, r_FanOut)
 {
+	
 	m_GfxInfo.x1 = r_GfxInfo.x1;
 	m_GfxInfo.y1 = r_GfxInfo.y1;
 	m_GfxInfo.x2 = r_GfxInfo.x2;
@@ -15,7 +16,7 @@ void OR2::Operate()
 
 	int sum = 0;
 
-	for (int i = 0; i < m_Inputs; i++)
+	for (int i = 1; i <= m_Inputs; i++)
 	{
 		sum += m_InputPins[i].getStatus();
 	}
@@ -33,10 +34,11 @@ void OR2::Operate()
 
 // Function Draw
 // Draws 2-input OR gate
-void OR2::Draw(Output* pOut)
+void OR2::Draw(Output* pOut, bool Selected)
 {
 	//Call output class and pass gate drawing info to it.
-	pOut->DrawOR2(m_GfxInfo);
+	pOut->DrawOR2(m_GfxInfo, Selected);
+	pOut->PrintLabel(m_GfxInfo.x1, m_GfxInfo.y1 - 17, GetLabel());
 }
 
 //returns status of outputpin
@@ -56,4 +58,23 @@ int OR2::GetInputPinStatus(int n)
 void OR2::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n-1].setStatus(s);
+}
+
+void OR2::SaveComponent(ofstream& fout)
+{
+	if (GetLabel().length() == 0)
+	{
+		SetLabel("OR2");
+	}
+	fout << "OR2" << "\t" << MyID << "\t" << GetLabel() << "\t";
+	fout << m_GfxInfo.x1 + UI.AND2_Width / 2 << "\t" << m_GfxInfo.y1 + UI.AND2_Height / 2 << endl;
+}
+
+void OR2::SaveConnection(int, int, int, ofstream&)
+{}
+
+void OR2::LoadCircuit(string label, int ID)
+{
+	SetLabel(label);
+	MyID = ID;
 }

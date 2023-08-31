@@ -127,15 +127,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actions\AddANDgate2.cpp" />
-    <ClCompile Include="Actions\AddLabel.cpp" />
+    <ClCompile Include="Actions\AddANDgate3.cpp" />
+    <ClCompile Include="Actions\AddBUFFERgate.cpp" />
+    <ClCompile Include="Actions\AddConnection.cpp" />
     <ClCompile Include="Actions\AddLED.cpp" />
+    <ClCompile Include="Actions\AddNANDgate.cpp" />
     <ClCompile Include="Actions\AddNORgate2.cpp" />
     <ClCompile Include="Actions\AddNORgate3.cpp" />
     <ClCompile Include="Actions\AddNOTgate.cpp" />
     <ClCompile Include="Actions\AddORgate2.cpp" />
+    <ClCompile Include="Actions\AddSwitch.cpp" />
     <ClCompile Include="Actions\AddXNORgate2.cpp" />
     <ClCompile Include="Actions\AddXORgate2.cpp" />
     <ClCompile Include="Actions\AddXORgate3.cpp" />
+    <ClCompile Include="Actions\ChangeSwitch.cpp" />
+    <ClCompile Include="Actions\copyC.cpp" />
+    <ClCompile Include="Actions\cutC.cpp" />
+    <ClCompile Include="Actions\Delete.cpp" />
+    <ClCompile Include="Actions\EditC.cpp" />
+    <ClCompile Include="Actions\LoadCircuits.cpp" />
+    <ClCompile Include="Actions\PasteC.cpp" />
+    <ClCompile Include="Actions\Save.cpp" />
+    <ClCompile Include="Actions\Select.cpp" />
+    <ClCompile Include="Actions\SimCircuit.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\image.cpp" />
@@ -187,6 +201,7 @@
     <ClCompile Include="Components\OutputPin.cpp" />
     <ClCompile Include="Components\Pin.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
+    <ClCompile Include="Components\SWITCH.cpp" />
     <ClCompile Include="Components\XNOR2.cpp" />
     <ClCompile Include="Components\XOR2.cpp" />
     <ClCompile Include="Components\XOR3.cpp" />
@@ -197,15 +212,29 @@
   <ItemGroup>
     <ClInclude Include="Actions\Action.h" />
     <ClInclude Include="Actions\AddANDgate2.h" />
-    <ClInclude Include="Actions\AddLabel.h" />
+    <ClInclude Include="Actions\AddANDgate3.h" />
+    <ClInclude Include="Actions\AddBUFFERgate.h" />
+    <ClInclude Include="Actions\AddConnection.h" />
     <ClInclude Include="Actions\AddLED.h" />
+    <ClInclude Include="Actions\AddNANDgate.h" />
     <ClInclude Include="Actions\AddNORgate2.h" />
     <ClInclude Include="Actions\AddNORgate3.h" />
     <ClInclude Include="Actions\AddNOTgate.h" />
     <ClInclude Include="Actions\AddORgate2.h" />
+    <ClInclude Include="Actions\AddSwitch.h" />
     <ClInclude Include="Actions\AddXNORgate2.h" />
     <ClInclude Include="Actions\AddXORgate2.h" />
     <ClInclude Include="Actions\AddXORgate3.h" />
+    <ClInclude Include="Actions\ChangeSwitch.h" />
+    <ClInclude Include="Actions\copyC.h" />
+    <ClInclude Include="Actions\cutC.h" />
+    <ClInclude Include="Actions\Delete.h" />
+    <ClInclude Include="Actions\EditC.h" />
+    <ClInclude Include="Actions\LoadCircuits.h" />
+    <ClInclude Include="Actions\PasteC.h" />
+    <ClInclude Include="Actions\Save.h" />
+    <ClInclude Include="Actions\Select.h" />
+    <ClInclude Include="Actions\SimCircuit.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />
@@ -242,6 +271,7 @@
     <ClInclude Include="Components\OutputPin.h" />
     <ClInclude Include="Components\Pin.h" />
     <ClInclude Include="ApplicationManager.h" />
+    <ClInclude Include="Components\SWITCH.h" />
     <ClInclude Include="Components\XNOR2.h" />
     <ClInclude Include="Components\XOR2.h" />
     <ClInclude Include="Components\XOR3.h" />

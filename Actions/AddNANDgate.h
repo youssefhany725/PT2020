@@ -1,17 +1,18 @@
-#ifndef _DELETE_H
-#define _DELETE_H
+#pragma once
+#include "action.h"
+#include "..\Components\NAND.h"
 
-#include "Actions/Action.h"
-
-class Delete : public Action
+class AddNANDgate : public Action
 {
 private:
 	//Parameters for rectangular area to be occupied by the gate
 	int Cx, Cy;	//Center point of the gate
 	int x1, y1, x2, y2;	//Two corners of the rectangluar area
+protected:
+	string NameTag;
 public:
-	Delete(ApplicationManager* pApp);
-	virtual ~Delete(void);
+	AddNANDgate(ApplicationManager* pApp);
+	virtual ~AddNANDgate(void);
 
 	//Reads parameters required for action to execute
 	virtual void ReadActionParameters();
@@ -20,8 +21,7 @@ public:
 
 	virtual void Undo();
 	virtual void Redo();
-
+	virtual void Label();
+	virtual bool CheckArea(int, int, int, int, bool);
 
 };
-
-#endif

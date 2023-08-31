@@ -24,6 +24,7 @@ public:
 	virtual void Undo();
 	virtual void Redo();
 	virtual void Label();
+	virtual bool CheckArea(int, int, int, int, bool);
 
 };
 

@@ -12,28 +12,29 @@ NAND::NAND(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(2, r_FanOut)
 
 void NAND::Operate()
 {
-	//caclulate the output status as the ANDing of the two input pins
+	//caclulate the output status as the NANDing of the two input pins
 	int OP = 1;
 	//Add you code here
-	for (int i = 0; i < m_Inputs; i++)
+	for (int i = 1; i <= m_Inputs; i++)
 	{
 		OP = OP * m_InputPins[i].getStatus();
 	}
 	if (OP == 0)
 	{
-		m_OutputPin = 1;
+		m_OutputPin.setStatus(HIGH);
 	}
-	else m_OutputPin = 0;
+	else m_OutputPin.setStatus(LOW);
 	
 }
 
 
 // Function Draw
 // Draws 2-input NAND gate
-void NAND::Draw(Output* pOut)
+void NAND::Draw(Output* pOut, bool Selected)
 {
 	//Call output class and pass gate drawing info to it.
-	pOut->DrawNAND2(m_GfxInfo);
+	pOut->DrawNAND2(m_GfxInfo, Selected);
+	pOut->PrintLabel(m_GfxInfo.x1, m_GfxInfo.y1 - 17, GetLabel());
 }
 
 //returns status of outputpin
@@ -53,4 +54,24 @@ int NAND::GetInputPinStatus(int n)
 void NAND::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n - 1].setStatus(s);
+}
+
+void NAND::SaveComponent(ofstream& fout)
+{
+
+	if (GetLabel().length() == 0)
+	{
+		SetLabel("NAND");
+	}
+	fout << "NAND" << "\t" << MyID << "\t" << GetLabel() << "\t";
+	fout << m_GfxInfo.x1 + UI.AND2_Width / 2 << "\t" << m_GfxInfo.y1 + UI.AND2_Height / 2 << endl;
+}
+
+void NAND::SaveConnection(int, int, int, ofstream&)
+{}
+
+void NAND::LoadCircuit(string label, int ID)
+{
+	SetLabel(label);
+	MyID = ID;
 }

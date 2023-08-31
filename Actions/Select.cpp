@@ -3,8 +3,10 @@
 
 
 
-Select::Select (ApplicationManager* pApp) : Action(pApp)
+Select::Select(ApplicationManager* pApp) : Action(pApp)
 {
+	Cx = 0;
+	Cy = 0;
 }
 
 Select::~Select(void)
@@ -18,15 +20,13 @@ void Select::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 
 	//Print Action Message
-	pOut->PrintMsg("Select");
+	pOut->PrintMsg("Action Select: Click on a component to select it");
 
 	//Wait for User Input
 	pIn->GetPointClicked(Cx, Cy);
 
 	//Clear Status Bar
 	pOut->ClearStatusBar();
-
-	//we wil get a compenent pointer here
 
 }
 
@@ -45,7 +45,19 @@ void Select::Execute()
 		else
 			pComp->setSelected(true);
 	}
+	else
+	{
+		pOut->PrintMsg("A click on the drawing area");
+	}
 
+}
+
+void Select::Label()
+{}
+
+bool Select::CheckArea(int x1, int x2, int y1, int y2, bool Components)
+{
+	return true;
 }
 
 void Select::Undo()

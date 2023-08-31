@@ -11,6 +11,7 @@ enum ActionType
 	ADD_INV,			//Add 1-input Inverter gate
 	ADD_AND_GATE_2,		//Add 2-input AND gate
 	ADD_OR_GATE_2,		//Add 2-input OR gate
+	DEL,				//Delete a Component, a Connection
 	ADD_NAND_GATE_2,	//Add 2-input NAND gate
 	ADD_NOR_GATE_2,		//Add 2-input NOR gate
 	ADD_XOR_GATE_2,		//Add 2-input XOR gate
@@ -34,7 +35,7 @@ enum ActionType
 
 	SELECT,		//Select a Component, a Connection
 	Multiple_SELECT, //select multiple components at once
-	DEL,		//Delete a Component, a Connection
+
 	MOVE,		//Move a Component, a Connection
 
 	CLEAR,		//clear drawing area
@@ -45,7 +46,7 @@ enum ActionType
 
 	SAVE,		//Save the whole Circuit to a file
 	LOAD,		//Load a Circuit from a file
-
+	
 	UNDO,		//Undo the last Action preformed
 	REDO,		//Redo the last Action canceled
 
@@ -70,7 +71,6 @@ enum BAR
 {
 	GateBar,
 	DesignBar
-	//GateBar
 };
 
 enum  MODE	//Modes of operation
@@ -79,13 +79,11 @@ enum  MODE	//Modes of operation
 	SIMULATION
 };
 
-
 enum DsgnMenuItem //The items of the design menu (you should add more items)
 {
 	//Note: Items are ordered here as they appear in menu
 	//If you want to change the menu items order, change the order here	
 
-	//TODO: Add more items names here
 	ITM_ADD,
 	ITM_EDIT,
 	ITM_SAVE,
@@ -94,11 +92,13 @@ enum DsgnMenuItem //The items of the design menu (you should add more items)
 	ITM_COPY,
 	ITM_PASTE,
 	ITM_SELECT,
-	ITM_MSELECT,
+	ITM_Validation,
+	//ITM_MSELECT,
 	ITM_SIMULATE,
 	ITM_CONNECT,
-	ITM_MOVE,
-	ITM_LABEL,
+	//ITM_MOVE,
+	//ITM_LABEL,
+	ITM_DELETE,     
 	ITM_CLEAR,
 	ITM_EXIT,		//Exit item
 
@@ -132,15 +132,14 @@ enum SimMenuItem //The items of the simulation menu (you should add more items)
 {
 	//Note: Items are ordered here as they appear in menu
 	ITM_SIM,	//Simulate menu item
-	ITM_TRUTH,	//Truth table menu item
-	ITM_Validation,
-	ITM_Design,
+	//ITM_TRUTH,	//Truth table menu item
 	ITM_Sav,
-	ITM_Probe,
+	//ITM_Probe,
 	ITM_ChangeSwitch,
+	ITM_Design,
 	ITM_EX,
 
-	//TODO:Add more items names here
+
 
 	ITM_SIM_CNT		//no. of simulation menu items ==> This should be the last line in this enum
 

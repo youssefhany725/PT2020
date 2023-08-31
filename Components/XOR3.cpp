@@ -2,6 +2,7 @@
 
 XOR3::XOR3(const GraphicsInfo& r_GfxInfo, int r_FanOut) :Gate(3, r_FanOut)
 {
+	
 	m_GfxInfo.x1 = r_GfxInfo.x1;
 	m_GfxInfo.y1 = r_GfxInfo.y1;
 	m_GfxInfo.x2 = r_GfxInfo.x2;
@@ -13,23 +14,30 @@ void XOR3::Operate()
 {
 	//caclulate the output status as the XORing of the three input pins
 
-	//Add you code here
+	
 	int sum = 0;
-	for (int i = 0; i < 3; i++)
+	for (int i = 1; i <= m_Inputs; i++)
 	{
 		sum += m_InputPins[i].getStatus();
 	}
-	m_OutputPin = sum % 2;            // aw (sum % 2 == 1)      // lw true, y3ny el inputs odd, hyedeeny 1. lw false, y3ny el inputs even, hydeely 0
+	if (sum % 2 == 1)
+	{
+		m_OutputPin.setStatus(HIGH);
+	}
+	else
+	{
+		m_OutputPin.setStatus(LOW);
+	}
 }
 
 
 // Function Draw
 // Draws 3-input XOR gate
-void XOR3::Draw(Output* pOut)
+void XOR3::Draw(Output* pOut, bool Selected)
 {
 	//Call output class and pass gate drawing info to it.
-	pOut->DrawXOR3(m_GfxInfo);
-	pOut->PrintLabel(m_GfxInfo.x1, m_GfxInfo.y1 - 17, NameTag);
+	pOut->DrawXOR3(m_GfxInfo, Selected);
+	pOut->PrintLabel(m_GfxInfo.x1, m_GfxInfo.y1 - 17, GetLabel());
 }
 
 //returns status of outputpin
@@ -51,12 +59,21 @@ void XOR3::setInputPinStatus(int n, STATUS s)
 	m_InputPins[n - 1].setStatus(s);
 }
 
-void XOR3::SetLabel(string Label)
+ void XOR3::SaveComponent(ofstream& fout)
 {
-	NameTag = Label;
+	 if (GetLabel().length() == 0)
+	 {
+		 SetLabel("XOR3");
+	 }
+	 fout << "XOR3" << "\t" << MyID << "\t" << GetLabel() << "\t";
+	 fout << m_GfxInfo.x1 + UI.AND2_Width / 2 << "\t" << m_GfxInfo.y1 + UI.AND2_Height / 2 << endl;
 }
 
-//void XOR3::SetID()
-//{
-//	//ID++;
-//}
+ void XOR3::SaveConnection(int, int, int, ofstream&)
+{}
+
+ void XOR3::LoadCircuit(string label, int ID)
+ {
+	 SetLabel(label);
+	 MyID = ID;
+ }

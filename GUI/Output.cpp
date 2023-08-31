@@ -16,7 +16,7 @@ Output::Output()
 
 	//Create the drawing window
 	pWind = CreateWind(UI.width, UI.height, UI.wx, UI.wy);
-	ChangeTitle("Programming Techniques Project");
+	ChangeTitle("Programming Techniques Project (Logic Simulator)");
 
 	CreateDesignToolBar();	//Create the desgin toolbar
 	CreateStatusBar();		//Create Status bar
@@ -64,6 +64,13 @@ void Output::PrintMsg(string msg) const
 	pWind->DrawString(MsgX, UI.height - MsgY, msg);
 }
 
+void Output::ClearGate(int x, int y)
+{
+	pWind->SetPen(WHITE, 1);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(x, y, x + UI.AND2_Width, y + UI.AND2_Height);
+}
+
 void Output::PrintLabelMsg(string msg) const
 {
 	ClearLabelStatusBar();	//Clear part of the Status bar to print message on it
@@ -79,8 +86,8 @@ void Output::PrintLabelMsg(string msg) const
 
 void Output::PrintLabel(int x, int y, string msg) const
 {
-	pWind->DrawString(x, y, msg);
 	PrintMsg("Click anywhere to continue");
+	pWind->DrawString(x, y, msg);
 }
 
 
@@ -89,7 +96,7 @@ void Output::PrintLabel(int x, int y, string msg) const
 void Output::ClearStatusBar()const
 {
 	// Set the Message offset from the Status Bar
-	int MsgX = 22;                                                    //\\ 3ALAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA. DH KAN 25 5ALETO 22 3LSHAN 7ARF EL "j" fl status bar fl getusersrting msh byetmese7 kolo
+	int MsgX = 22;                                                
 	int MsgY = UI.StatusBarHeight - 10;
 
 	//Overwrite using bachground color to erase the message
@@ -101,7 +108,7 @@ void Output::ClearStatusBar()const
 void Output::ClearLabelStatusBar()const
 {
 	// Set the Message offset from the Status Bar
-	int MsgX = 22 + 105;                                                    //\\ 3ALAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA. DH KAN 25 5ALETO 22 3LSHAN 7ARF EL "j" fl status bar fl getusersrting msh byetmese7 kolo
+	int MsgX = 22 + 105;                                                   
 	int MsgY = UI.StatusBarHeight - 10;
 
 	//Overwrite using bachground color to erase the message
@@ -134,12 +141,9 @@ void Output::CreateDesignToolBar() const
 
 	//You can draw the tool bar icons in any way you want.
 
-	//First prepare List of images for each menu item
+	
 	string MenuItemImages[ITM_DSN_CNT];
 
-
-
-	//TODO: Prepare image for each menu item and add it to the list
 	MenuItemImages[ITM_ADD] = "Images\\Menu\\Menu_ADD.jpg";
 	MenuItemImages[ITM_EDIT] = "Images\\Menu\\Menu_EDIT.jpg";
 	MenuItemImages[ITM_SAVE] = "Images\\Menu\\Menu_SAVE.jpg";
@@ -149,15 +153,14 @@ void Output::CreateDesignToolBar() const
 	MenuItemImages[ITM_PASTE] = "Images\\Menu\\Menu_PASTE.jpg";
 	MenuItemImages[ITM_SIMULATE] = "Images\\Menu\\Menu_SIMULATE.jpg";
 	MenuItemImages[ITM_SELECT] = "Images\\Menu\\Menu_SELECT.jpg";
-	MenuItemImages[ITM_MSELECT] = "Images\\Menu\\Menu_MSELECT.jpg";
 	MenuItemImages[ITM_CONNECT] = "Images\\Menu\\Menu_CONNECT.jpg";
-	MenuItemImages[ITM_MOVE] = "Images\\Menu\\Menu_MOVE.jpg";
-	MenuItemImages[ITM_LABEL] = "Images\\Menu\\Menu_LABEL.jpg";
+	MenuItemImages[ITM_Validation] = "Images\\Sim\\Menu_CheckComponents.jpg";
+	MenuItemImages[ITM_DELETE] = "Images\\Menu\\Menu_Delete.jpg";
 	MenuItemImages[ITM_CLEAR] = "Images\\Menu\\Menu_CLEAR.jpg";
 	MenuItemImages[ITM_EXIT] = "Images\\Menu\\Menu_Exit.jpg";
 	//Draw menu item one image at a time
 	for (int i = 0; i < ITM_DSN_CNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);         //\\3ALAMAAAAAAAAAAAAAAAAAAA // sheltaha 5las
+		pWind->DrawImage(MenuItemImages[i], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
 
 	pWind->SetPen(RED, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
@@ -194,7 +197,7 @@ void Output::CreateGateToolBar() const
 	GateMenuItemImages[ITM_BACK] = "Images\\Menu\\GateMenu\\Menu_BACK.jpg";
 
 	for (int i = 0; i < ITM_GATE_CNT; i++)
-		pWind->DrawImage(GateMenuItemImages[i], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);    //\\ 3ALAMAAAAAAAAAAAAAAAAAAA  // sheltaha 5las
+		pWind->DrawImage(GateMenuItemImages[i], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);   
 
 	pWind->SetPen(BLACK, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
@@ -207,14 +210,10 @@ void Output::CreateSimulationToolBar() const
 {
 	UI.AppMode = SIMULATION;	//Simulation Mode
 
-	//TODO: Write code to draw the simualtion toolbar (similar to that of design toolbar drawing)
 	string SimMenuItem[ITM_SIM_CNT];
 	SimMenuItem[ITM_SIM] = "Images\\Sim\\Menu_SIMULATE.jpg";
-	SimMenuItem[ITM_TRUTH] = "Images\\Sim\\Menu_Ttable.jpg";
-	SimMenuItem[ITM_Validation] = "Images\\Sim\\Menu_CheckComponents.jpg";
-	SimMenuItem[ITM_Design] = "Images\\Sim\\Menu_Design.jpg";
+	SimMenuItem[ITM_Design] = "Images\\Menu\\GateMenu\\Menu_BACK.jpg";
 	SimMenuItem[ITM_Sav] = "Images\\Sim\\Menu_Save.jpg";
-	SimMenuItem[ITM_Probe] = "Images\\Sim\\Menu_ProbingTool.jpg";
 	SimMenuItem[ITM_ChangeSwitch] = "Images\\Sim\\Menu_ChangeSwitch.jpg";
 	SimMenuItem[ITM_EX] = "Images\\Menu\\Menu_Exit.jpg";
 
@@ -244,7 +243,6 @@ void Output::DrawAND2(GraphicsInfo r_GfxInfo, bool selected) const
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
 
-//TODO: Add similar functions to draw all components
 
 
 void Output::DrawNAND2(GraphicsInfo r_GfxInfo, bool selected) const
@@ -255,7 +253,7 @@ void Output::DrawNAND2(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_NAND2.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw NAND2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -268,7 +266,7 @@ void Output::DrawOR2(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_OR2.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw OR2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -281,7 +279,7 @@ void Output::DrawNOR2(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_NOR2.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw NOR2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -294,7 +292,7 @@ void Output::DrawXOR2(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_XOR2.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw XOR2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -307,7 +305,7 @@ void Output::DrawXNOR2(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_XNOR2.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw XNOR2 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -320,7 +318,7 @@ void Output::DrawBUFF(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_Buff.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw BUFF Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -333,7 +331,7 @@ void Output::DrawNOT(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_NOT.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw NOT Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -346,7 +344,7 @@ void Output::DrawAND3(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_AND3.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw AND3 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -359,7 +357,7 @@ void Output::DrawNOR3(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_NOR3.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw NOR3 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -372,20 +370,29 @@ void Output::DrawXOR3(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_XOR3.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw XOR3 Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
 
-void Output::DrawLED(GraphicsInfo r_GfxInfo, bool selected) const
+void Output::DrawLED(GraphicsInfo r_GfxInfo, bool selected, bool ON) const
 {
 	string GateImage;
-	if (selected)	//use image in the highlighted case
-		GateImage = "Images\\Gates\\Gate_LED_HI.jpg";
+	if (ON)
+	{
+		if (selected)	//use image in the highlighted case
+			GateImage = "Images\\Gates\\Gate_LED_ON_HI.jpg";
+		else
+			GateImage = "Images\\Gates\\Gate_LED_ON.jpg";
+	}
 	else
-		GateImage = "Images\\Gates\\Gate_LED.jpg";
-
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	{
+		if (selected)	//use image in the highlighted case
+			GateImage = "Images\\Gates\\Gate_LED_OFF_HI.jpg";
+		else
+			GateImage = "Images\\Gates\\Gate_LED_OFF.jpg";
+	}
+	//Draw LED Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -398,7 +405,7 @@ void Output::DrawOpenSWITCH(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_SWITCH.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw Switch Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -410,7 +417,7 @@ void Output::DrawClosedSWITCH(GraphicsInfo r_GfxInfo, bool selected) const
 	else
 		GateImage = "Images\\Gates\\Gate_SWITCH_Closed.jpg";
 
-	//Draw AND2 Gate at Gfx_Info (1st corner)
+	//Draw Switch Gate at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
 	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
 }
@@ -427,15 +434,15 @@ void Output::DrawConnection(GraphicsInfo r_GfxInfo, bool selected) const
 		int py2 = r_GfxInfo.y2;
 		if ((py1 >= py2 && px2 >= px1) || (py2 >= py1 && px2 >= px1)) //to draw only horizontal and vertical lines
 		{
-			pWind->DrawLine(px1, py1, (px2 - 20), py1);
-			pWind->DrawLine((px2 - 20), py1, (px2 - 20), py2);
-			pWind->DrawLine((px2 - 20), py2, px2, py2);
+			pWind->DrawLine(px1, py1, (px2 - 30), py1);
+			pWind->DrawLine((px2 - 30), py1, (px2 - 30), py2);
+			pWind->DrawLine((px2 - 30), py2, px2, py2);
 		}
 		else
 		{
-			pWind->DrawLine(px1, py1, (px2 + 20), py1);
-			pWind->DrawLine((px2 + 20), py1, (px2 + 20), py2);
-			pWind->DrawLine((px2 + 20), py2, px2, py2);
+			pWind->DrawLine(px1, py1, (px2 + 30), py1);
+			pWind->DrawLine((px2 + 30), py1, (px2 + 30), py2);
+			pWind->DrawLine((px2 + 30), py2, px2, py2);
 		}
 	}
 	else
@@ -447,21 +454,18 @@ void Output::DrawConnection(GraphicsInfo r_GfxInfo, bool selected) const
 		int py2 = r_GfxInfo.y2;
 		if ((py1 >= py2 && px2 >= px1) || (py2 >= py1 && px2 >= px1)) //to draw only horizontal and vertical lines
 		{
-			pWind->DrawLine(px1, py1, (px2 - 20), py1);
-			pWind->DrawLine((px2 - 20), py1, (px2 - 20), py2);
-			pWind->DrawLine((px2 - 20), py2, px2, py2);
+			pWind->DrawLine(px1, py1, (px2 - 30), py1);
+			pWind->DrawLine((px2 - 30), py1, (px2 - 30), py2);
+			pWind->DrawLine((px2 - 30), py2, px2, py2);
 		}
 		else
 		{
-			pWind->DrawLine(px1, py1, (px2 + 20), py1);
-			pWind->DrawLine((px2 + 20), py1, (px2 + 20), py2);
-			pWind->DrawLine((px2 + 20), py2, px2, py2);
+			pWind->DrawLine(px1, py1, (px2 + 30), py1);
+			pWind->DrawLine((px2 + 30), py1, (px2 + 30), py2);
+			pWind->DrawLine((px2 + 30), py2, px2, py2);
 		}
 
 	}
-
-	////TODO: Add code to draw connection
-
 }
 
 
