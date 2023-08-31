@@ -24,6 +24,12 @@ public:
 	//To redo this action (code depends on action type)
 	virtual void Redo()=0;
 
+	//To add a label for component
+	virtual void Label()=0;
+
+	//To check the drawing area before drawing
+	virtual bool CheckArea(int, int, int, int, bool)=0;
+
 };
 
 #endif

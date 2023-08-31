@@ -14,7 +14,7 @@ public:
 	void CreateDesignToolBar() const;	//Tool bar of the design mode
 	void CreateSimulationToolBar() const;//Tool bar of the simulation mode
 	void CreateStatusBar() const;	//Create Status bar
-
+	void ClearGate(int, int); //youssef was here
 	void CreateGateToolBar() const;
 	void ClearGateToolBar() const;
 	void ClearDesignToolBar() const;
@@ -39,7 +39,7 @@ public:
 	void DrawAND3(GraphicsInfo r_GfxInfo, bool selected = false) const;
 	void DrawNOR3(GraphicsInfo r_GfxInfo, bool selected = false) const;
 	void DrawXOR3(GraphicsInfo r_GfxInfo, bool selected = false) const;
-	void DrawLED(GraphicsInfo r_GfxInfo, bool selected = false) const;
+	void DrawLED(GraphicsInfo r_GfxInfo, bool selected = false, bool ON = false) const;
 	void DrawOpenSWITCH(GraphicsInfo r_GfxInfo, bool selected = false) const;
 	void DrawClosedSWITCH(GraphicsInfo r_GfxInfo, bool selected = false) const;
 	// Draws Connection

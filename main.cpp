@@ -11,9 +11,9 @@ int main()
 	ActionType ActType;
 	//Create an object of ApplicationManager
 	ApplicationManager AppManager;
-
 	do
 	{		
+		
 		//Read user action
 		ActType = AppManager.GetUserAction();
 
@@ -25,10 +25,6 @@ int main()
 	
 
 	}while(ActType != EXIT);
-
-	
-	cout << HIGH + HIGH << endl << endl;
-		
 	return 0;
 }
 

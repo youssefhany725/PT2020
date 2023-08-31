@@ -21,8 +21,11 @@ protected:
 	int m_Inputs;		//No. of input pins of that Gate.
 public:
 	Gate(int r_Inputs, int r_FanOut);
-	int getNoIpins(); /// added to get the m_Inputs
-	OutputPin& getOP();
+	int getNoIpins(); /// added to get the m_Inputs	
+	OutputPin* getOP(); // Added to get O/P	
+	InputPin* getIP(int); //Added to get I/P
+
+	bool IPnotConnected(int);
 };
 
 #endif

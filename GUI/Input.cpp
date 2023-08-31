@@ -13,18 +13,67 @@ void Input::GetPointClicked(int& x, int& y)
 
 string Input::GetSrting(Output* pOut)
 {
-	///TODO: Implement this Function                                                        // Done
-	//Read a complete string from the user until the user presses "ENTER".                  // Done
-	//If the user presses "ESCAPE". This function should return an empty string.            // Done
-	//"BACKSPACE" should be also supported												    // Done
-	//User should see what he is typing at the status bar							        // Done
 
-
-	string msg;                //\\ momkn hena n2ool msg ="enter a label mthln aw kda" w nzawed pOut->PrintMsg(msg);
+	string msg;  
 	char c;
 	keytype k;                                            // Checks special types of keys entered
 	pWind->FlushKeyQueue();                               // Deletes old entries of keys
 	pOut->PrintMsg("Enter a label: ");
+	while (true)
+	{
+										                  // Clears status bar initially, then prints new messages
+		k = pWind->WaitKeyPress(c);                       // Takes input from user through GUI window
+
+		if (k == ESCAPE)
+		{
+			msg.clear();                                  // Clears message and empties the status bar
+			pOut->PrintMsg(msg);
+			break;
+		}
+
+		else
+		{
+			if (c == '\r')								  // Detects the enter key
+			{
+				pOut->PrintMsg("");                       // Empties the status bar
+				break;
+			}
+
+			else if (c == '\b')                           // Detects the backspace
+			{
+				if (msg.length() > 0)
+				{
+					msg.erase(msg.length() - 1, 1);       // Deletes one letter
+					pOut->PrintLabelMsg(msg);
+				}
+
+			}
+
+			else
+			{
+				msg += c;                                 // Adds one letter
+				pOut->PrintLabelMsg(msg);
+			}
+		}
+	}
+
+	// Printing the message at the coordinates taken from the user
+	int x, y;
+	pWind->FlushMouseQueue();               // Deleting old entries of mouse clicks
+
+	
+	return msg;
+}
+
+string Input::GetInt(Output* pOut)
+{
+	
+
+	string msg;      
+	char c;
+	keytype k;                                            // Checks special types of keys entered
+	pWind->FlushKeyQueue();                               // Deletes old entries of keys
+	
 	while (true)
 	{
 		//pOut->PrintMsg(msg);                              // Clears status bar initially, then prints new messages
@@ -67,12 +116,6 @@ string Input::GetSrting(Output* pOut)
 	int x, y;
 	pWind->FlushMouseQueue();               // Deleting old entries of mouse clicks
 
-	//if (k != ESCAPE)                        // Skips these steps if escape key was pressed
-	//{
-	//	pOut->PrintMsg("Click anywhere to place the label");
-	//	GetPointClicked(x, y);
-	//	pWind->DrawString(x, y, msg);
-	//}
 	return msg;
 }
 
@@ -84,8 +127,8 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 
 	if (UI.AppMode == DESIGN)	//application is in design mode
 	{
-			//[1] If user clicks on the Toolbar
-		if (y >= 0 && UI.ActiveBar==GateBar && y < UI.ToolBarHeight)
+		//[1] If user clicks on the Toolbar
+		if (y >= 0 && UI.ActiveBar == GateBar && y < UI.ToolBarHeight)
 		{
 			int ClickedItemOrder = (x / UI.ToolItemWidth);
 			switch (ClickedItemOrder)
@@ -103,11 +146,13 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 			case ITM_BUFF:	 return ADD_Buff;
 			case ITM_LED:	 return ADD_LED;
 			case ITM_SWITCH: return ADD_Switch;
-			case ITM_Exit:   return EXIT;
-			case ITM_BACK: 	 return Go_Back;
+			case ITM_Exit:	 return EXIT;
+			case ITM_BACK:	 return Go_Back;
+
+			default:		 return DSN_TOOL;	//A click on empty place in desgin toolbar
 			}
 		}
-		if (y >= 0 && UI.ActiveBar==DesignBar && y < UI.ToolBarHeight)
+		if (y >= 0 && y < UI.ToolBarHeight && UI.ActiveBar == DesignBar)
 		{
 			//Check whick Menu item was clicked
 			//==> This assumes that menu items are lined up horizontally <==
@@ -125,11 +170,10 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 			case ITM_COPY:		return COPY;
 			case ITM_PASTE:		return PASTE;
 			case ITM_SELECT:	return SELECT;
-			case ITM_MSELECT:	return Multiple_SELECT;
+			case ITM_Validation: return Validate_Circuit;
 			case ITM_SIMULATE:	return SIM_MODE;
 			case ITM_CONNECT:	return ADD_CONNECTION;
-			case ITM_MOVE:		return MOVE;
-			case ITM_LABEL:		return ADD_Label;
+			case ITM_DELETE:	return DEL;
 			case ITM_CLEAR:		return CLEAR;
 			case ITM_EXIT:		return EXIT;
 
@@ -151,7 +195,7 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 		return STATUS_BAR;
 	}
 
-	else	//Application is in Simulation mode //3alaaamaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+	else	//Application is in Simulation mode 
 	{
 		if (y >= 0 && y < UI.ToolBarHeight)
 		{
@@ -159,11 +203,8 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 			switch (ClickedItemOrder)
 			{
 			case ITM_EX:		   return EXIT;
-			case ITM_TRUTH:		   return Create_TruthTable;
 			case ITM_Design:	   return DSN_MODE;
 			case ITM_Sav:		   return SAVE;
-			case ITM_Validation:   return Validate_Circuit;
-			case ITM_Probe:		   return Probing_tool;
 			case ITM_ChangeSwitch: return Change_Switch;
 			case ITM_SIM:		   return SimulateCircuit;
 
@@ -180,9 +221,6 @@ ActionType Input::GetUserAction() //shlna const w zwdna add flag
 		//[3] User clicks on the status bar
 		return STATUS_BAR;
 
-
-
-		//return SIM_MODE;	//This should be changed after creating the compelete simulation bar 
 	}
 
 }

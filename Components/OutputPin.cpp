@@ -16,7 +16,15 @@ bool OutputPin::ConnectTo(Connection *r_Conn)
 	{
 		m_Connections[m_Conn++] = r_Conn;	//add a new connection the the array of connections
 		return true;
-	}
-	
+	}	
 	return false;	//can't connect to any more connections
+}
+void OutputPin::DisconnectOP()
+{
+	m_Conn--;
+}
+
+int OutputPin::getCurrentConnections()
+{
+	return m_Conn;
 }
